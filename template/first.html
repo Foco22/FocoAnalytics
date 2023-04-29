@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Personal Portfolio Website Design | Codehal</title>
+
+    <!-- box icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="static/style.css">
+    <style>
+     </style>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/#home" class="logo">FocoAnalytics.</a>
+
+        <div class='bx bx-menu' id="menu-icon"></div>
+
+        <nav class="navbar">
+            <a href="/#home" class="active home-class">Inicio</a>
+            <a href="/#about" class="about-class">¿Quién soy?</a>
+            <a href="/#portfolio" class="portfolio-class">Ideas</a>
+        </nav>
+    </header>
+    <section class="blog" id="blog">
+        <div class="foco_container">
+            <div class="column middle">
+              <h2 class="center-text"><i class="fas fa-smile"></i> ¿Cómo construir tu propio blog?</h2>
+              <br>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Desde hace algún tiempo, he tenido el deseo de crear mi propio contenido y finalmente me animé a hacerlo a través de un blog donde pueda compartir mis proyectos y experiencias. En este espacio, me enfocaré en temas relacionados con la inteligencia artificial y la ciencia de datos. Inicialmente pensé en crear este blog de la opción más sencilla: comprando un dominio y utilizar WordPress u otra herramienta de formato pre-armados para construirlo. Si bien esa ruta podría haber sido una excelente elección debido a la facilidad de crear un blog como un sitio web, tenía un interés personal en aprender más sobre HTML y CSS. Debido a esto, decidí tomar un camino más desafiante, construyéndolo desde una plantilla de html y utilizando diversas herramientas (Python, HTML, Docker) u entre otros.
+              </p>
+              <br>
+              <br>
+              <h4 class="title-small"> 1-) ¿Cómo empecé?</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Para ser honesto, durante este proyecto he tenido que recurrir constantemente a dos fuentes principales: el ChatGPT y YouTube. A continuación, les explicaré por qué las he utilizado.
+              </p>
+              <ul class="blog-text" style="padding-left: 20px;">
+                <br>
+                <li><strong>  ChatGPT:</strong>  El ChatGPT es una herramienta sumamente poderosa para consultar temas de programación. Aunque ocasionalmente puede cometer errores, me ha proporcionado código muy valioso que, con algunas modificaciones, ha sido fundamental para avanzar en el proyecto. La gran mayoría de los códigos relacionados con la creación de elementos en HTML fueron proporcionados por el ChatGPT.</li>
+                <br>
+                <li><strong>  Youtube:</strong>  He utilizado mucho YouTube para aprender información sobre HTML y CSS. De hecho, el diseño del front es una plantilla que compré por 8 dólares en la web. El vídeo de YouTube al que hago referencia es: <a href="https://www.youtube.com/watch?v=Tkp3FDgOueM" style="color: #0ef;"><strong>https://www.youtube.com/watch?v=Tkp3FDgOueM</strong></a>.</li>
+              </ul>
+              <br>
+              <br>
+              <h4 class="title-small"> 2-) ¿Planilla en Youtube? </h4>
+              <br>
+              <p class="blog-text"> 
+                Tal como mencioné anteriormente, la mayor parte del diseño del front proviene de una plantilla adquirida a través del enlace proporcionado en YouTube. Esta plantilla incluye todos los formatos, colores y elementos necesarios, por lo que principalmente tuve que realizar algunos ajustes en ciertos aspectos, como el texto, las imágenes o la edición de secciones específicas más que otra cosa. Dicha plantilla contiene la siguiente información: 
+              </p>
+              <ul class="blog-text" style="padding-left: 20px;">
+                <br>
+                <li><strong>  Style.css:</strong>  Incluye todos los formatos y diseños necesarios para darle formato al HTML</li>
+                <li><strong>  Imagenes:</strong>  Carpeta que contiene las imágenes utilizadas en la página.</a></li>
+                <li><strong>  Script.Js:</strong>  Es un archivo en JavaScript con las distintas funciones.</a></li>
+                <li><strong>  Index.html: </strong> Es el HTML del diseño frontal de la página..</a></li>
+              </ul>
+              <br>
+              <p class="blog-text"> 
+                En cuanto al inicio de la página, realicé algunas modificaciones en el archivo index.html, conservando las secciones de inicio, sobre mí y artículos. Las demás secciones se eliminaron del HTML. Para este primer artículo fue necesario  crear un diferente html, el cual fue llamado first.html, y sigue el mismo formato que el anterior, pero incluye principalmente elementos de texto para el blog.
+              </p>  
+              <br>
+              <h4 class="title-small"> 3-) ¿Cómo vincular todo?</h4>
+              <br>
+              <p class="blog-text"> 
+                En Python, existen diversos frameworks que se pueden emplear para crear aplicaciones web o plataformas, como Streamlit, Flask o Django. En este caso, dado que se trata de una página web sencilla, opté por utilizar Flask, empleando un código bastante simple para enlazar todos los componentes del codigo. Se creó un archivo App.py, con el siguiente código: 
+              </p>
+              <br>
+              <pre class="code-box">
+from flask import Flask
+from markupsafe import Markup
+from flask import render_template
+
+app = Flask(__name__,
+template_folder='template/')
+
+@app.route('/')
+def index():
+ return render_template('index.html')
+
+@app.route('/first.html')
+def firsr():
+ return render_template('first.html')
+
+if __name__ == '__main__':
+    app.run(debug=True,host="0.0.0.0"
+    ,port=8000)
+              </pre>
+              <br>
+              <p class="blog-text"> 
+                Un aspecto importante a destacar utilizando Flask es que, para poder utilizar tanto imágenes como el archivo style.css (HTML), es necesario crear una carpeta llamada "static" que contenga toda esta información. En mi caso, dentro de esta carpeta, almacené el archivo style.css y las imágenes del proyecto.
+              </p>
+              <br>
+              <p class="blog-text"> 
+                Por otra parte, encapsulé todo el código en un contenedor Docker para facilitar su alojamiento en la nube. Para ello, creé el archivo requirements.txt y el Dockerfile, que contienen el siguiente código:
+              </p>
+              <br>
+
+              <pre class="code-box">
+FROM python:3.10
+
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
+
+RUN pip install -r requirements.txt
+
+EXPOSE 8080
+
+CMD python App.py
+              </pre>
+              <br>
+              <br>
+              <br>
+            
+
+              <p class="blog-text"> 
+                Desde hace algun tiempo tenia ganas de poder crear mi propio blog de contenido, enseñando y mostrando algunos de los trabajos que he hecho, u otras cosas que me gusta investigar y aprender durante este viaje en el mundo de la ciencia de datos. Debido a esto,
+                pienso que que seria bueno poder mostrar.
+              </p>
+             <br>
+            </div>
+            </div>
+        </div>
+    </section>
+    <!-- scroll reveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- typed js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- custom js -->
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
+
