@@ -87,11 +87,11 @@ template_folder='template/')
 
 @app.route('/')
 def index():
- return render_template('index.html')
+return render_template('index.html')
 
 @app.route('/first.html')
 def firsr():
- return render_template('first.html')
+return render_template('first.html')
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0"
@@ -141,7 +141,7 @@ CMD python App.py
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
     <!-- custom js -->
-    <script src="js/script.js"></script>
+    <script src="static/script.js"></script>
 
 </body>
 
