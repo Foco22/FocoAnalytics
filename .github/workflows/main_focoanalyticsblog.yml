@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://focoanalyticsblog/
-        username: ${{ secrets.AzureAppService_ContainerUsername_34be580846eb41278a0763ec3af62331 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_0783b99a309e486ba3a2b368fcb44aeb }}
+        registry: https://focoanalytics.azurecr.io/
+        username: ${{ secrets.AzureAppService_ContainerUsername_a06949842c384150b5e02f5772310043 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_da5f8c99c1d345a5bc59d4c79a1cceac }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: focoanalyticsblog/${{ secrets.AzureAppService_ContainerUsername_34be580846eb41278a0763ec3af62331 }}/focoanalyticsblog:${{ github.sha }}
+        tags: focoanalytics.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a06949842c384150b5e02f5772310043 }}/focoanalyticsblog:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'focoanalyticsblog'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_57601579b6eb4c21ab4e9ed89ce9f1d7 }}
-        images: 'focoanalyticsblog/${{ secrets.AzureAppService_ContainerUsername_34be580846eb41278a0763ec3af62331 }}/focoanalyticsblog:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4b0402ccd2734ba7bae53dc05e7ea725 }}
+        images: 'focoanalytics.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_a06949842c384150b5e02f5772310043 }}/focoanalyticsblog:${{ github.sha }}'
