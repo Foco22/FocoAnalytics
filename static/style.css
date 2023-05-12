@@ -90,6 +90,7 @@ section {
     animation: floatImage 4s ease-in-out infinite;
 }
 
+
 @keyframes floatImage {
     0% {
         transform: translateY(0);
@@ -465,6 +466,23 @@ span {
 .element::after {
     content: "\01F525";
 }
+
+.home-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-link img {
+    width: 60vw;
+    max-width: 100%;
+  }
+  
+@media screen and (max-width: 768px) {
+    .home-link img {
+      width: 100%;
+    }
+}  
 
 /* BREAKPOINTS */
 @media (max-width: 1200px) {

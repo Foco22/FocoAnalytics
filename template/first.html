@@ -106,7 +106,6 @@ if __name__ == '__main__':
                 Por otra parte, encapsulé todo el código en un contenedor Docker para facilitar su alojamiento en la nube. Para ello, creé el archivo requirements.txt y el Dockerfile, que contienen el siguiente código:
               </p>
               <br>
-
               <pre class="code-box">
 FROM python:3.10
 
@@ -121,14 +120,76 @@ EXPOSE 8080
 CMD python App.py
               </pre>
               <br>
-              <br>
-              <br>
-            
-
+              <h4 class="title-small"> 4-) ¿Cómo publicar la web?</h4> 
+              <br>             
               <p class="blog-text"> 
-                Desde hace algun tiempo tenia ganas de poder crear mi propio blog de contenido, enseñando y mostrando algunos de los trabajos que he hecho, u otras cosas que me gusta investigar y aprender durante este viaje en el mundo de la ciencia de datos. Debido a esto,
-                pienso que que seria bueno poder mostrar.
+                Finalmente, hemos llegado a la última parte de este breve artículo sobre cómo poner en producción este proyecto. Dado mi interés en aprender más sobre el uso de Azure por mi trabajo personal como laboral, decidí implementar este proyecto en los servicios en la nube de Microsoft, utilizando mi cuenta personal con ese fin. A continuación, se presentan los principales pasos que seguí para lograrlo:
+              <br>
               </p>
+                <ol>
+                  <br>
+                  <br>
+                    <li class="blog-text">
+                    Se debe crea una cuenta en Azure a través del siguiente enlace
+                    <a href="https://azure.microsoft.com/en-us/free/" style="color: #0ef;"><strong>https://azure.microsoft.com/en-us/free/</strong></a>
+                  (Como cualquier servicio cloud, se debe añadir una tarjeta de crédito a la cuenta)  
+                    </li>
+                <br>
+                <li class="blog-text">
+                   Dentro de la consola, se debe crear un servicio de App Services, que servirá para ejecutar el Dockerfile del Github del proyecto. 
+                  Este servicio se puede encontrar escribiendo en el buscador de la consola “App Services”. Se debe seleccionar la opción “Contenedor” al momento de crear el servicio.
+                </li>
+                <br>
+                <li class="blog-text">
+                  Después de crear el servicio, ingresa a él y selecciona "Centro de Implementación" para vincular tu repositorio de GitHub con el servicio de Docker que has creado en Azure. A continuación, se detallan las principales opciones que debes configurar:
+                </li>
+                <ul class="blog-text" style="padding-left: 20px;">
+                  <br>
+                  <li><strong>  Origen del repositorio:</strong>  Elige la opción "GitHub" como origen del repositorio</li>
+                  <li><strong>  Autorización:</strong>  Haz clic en "Autorizar" para permitir que Azure acceda a tu cuenta de GitHub y pueda obtener los detalles del repositorio.</a></li>
+                  <li><strong>  Repositorio:</strong>  Selecciona el repositorio de GitHub que deseas vincular con el servicio de Docker en Azure</a></li>
+                  <li><strong>  Rama: </strong> Elige la rama específica de tu repositorio que deseas utilizar para la implementación en Azure..</a></li>
+                  <li><strong>  Configuración de implementación: </strong> Selecciona las opciones adecuadas para tu proyecto, como la configuración de compilación y despliegue continuo. Esto dependerá de las necesidades y características de tu aplicación.</a></li>
+                  <li><strong>  Guardar configuración: </strong> Finalmente, guarda la configuración realizada en el "Centro de Implementación" para vincular exitosamente tu repositorio de GitHub con el servicio de Docker en Azure.</a></li>
+                </ul> 
+                <br>
+                <li class="blog-text">
+                  Dominio personalizado: Después de implementar el servicio, es común que los servicios en la nube proporcionen una URL relacionada con sus servidores. En el caso de Azure, se entrega una URL como <proyecto>.azurewebsites.net.       
+                  Claramente, la URL proporcionada (<proyecto>.azurewebsites.net) no es común ni ampliamente utilizada en los sitios web convencionales. Para el desarrollo de esta pagina, se compro un dominio en GoDaddy, y se vinculo el desarrollo de este proyecto en el dominio comprado, para así, tener una URL con un dominio más normal.          
+                </li>
+                <br>
+                <p class="blog-text"> 
+                  Claramente, la URL proporcionada (<proyecto>.azurewebsites.net) no es común ni ampliamente utilizada en los sitios web convencionales. Para el desarrollo de esta pagina, se compro un dominio en GoDaddy, y se vinculo el desarrollo de este proyecto en el dominio comprado, para así, tener una URL con un dominio más normal.
+                <br>
+                <br>
+                <p class="blog-text"> 
+                  Después de adquirir el dominio, regresa a las opciones del servicio de App Service creado y selecciona "Dominio Personalizado". Haz click en "Agregar dominio personalizado", y completa la información requerida, donde lo unico que deberas preocuparte es que debes registrar los registros DNS en el proveedor de dominio. Para ello, debes ingresar a tu cuenta de GoDaddy, y en la sección de DNS, debes agregar los registros que te entrega Azure.
+                <br>
+                <br>
+                <p class="blog-text"> 
+                  Si logras realizar todos estos pasos, deberías tener tu proyecto en producción en la nube de Azure. En mi caso, el GitHub de todo el proyecto es el siguiente:
+                <br>
+                <br>
+                <style>
+                  .github-text {
+                    font-size: 24px;
+                  }
+                </style>                
+                <strong class="github-text">Github</strong>
+                <br>
+                <br>                
+                <a class = "home-link img" href="https://github.com/Foco22/FocoAnalytics" >
+                  <img src="static/Github.png" alt="Link Image">
+                </a>
+                <br>
+                <br>
+                <p class="blog-text"> 
+                  Espero poder compartir más analisis, mi ideas o otros proyecto en el futuro en este sitio personal. Tambien, me gustaría poder implementarle un Chatbot, que seria algo muy entetenido.               
+                <br>
+                <br>
+                <br>
+
+                </ol>
              <br>
             </div>
             </div>
