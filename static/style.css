@@ -12,10 +12,10 @@
 }
 
 :root {
-    --bg-color: #1f242d;
-    --second-bg-color: #323946;
-    --text-color: #fff;
-    --main-color: #0ef;
+    --bg-color: #FAFAFA;
+    --second-bg-color: #FFFFFF;
+    --text-color: black;
+    --main-color: #673AB7;
 }
 
 *::selection {
@@ -44,15 +44,15 @@ section {
     left: 0;
     width: 100%;
     padding: 2rem 9%;
-    background: var(--bg-color);
+    background:  #FAFAFA;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
 }
 
-.header.sticky {
-    border-bottom: .1rem solid rgba(0, 0, 0, .2);
+.header {
+    border-bottom: .2rem solid rgba(0, 0, 0, .2);
 }
 
 .logo {
@@ -244,7 +244,7 @@ span {
 }
 
 .portfolio {
-    background: #1f242d;
+    background: #FAFAFA;
     min-height: auto;
     padding-bottom: 10rem;
 }
@@ -419,7 +419,7 @@ span {
     flex: 4; /* Increase this value to make the middle column larger */
     margin-left: 20px;
     margin-right: 20px;
-    background-color:  #323946;
+    background-color:  #F5F5F5;
 }
 
 .center-text {
@@ -452,6 +452,7 @@ span {
     font-family: monospace;
     font-size: 16px; 
     max-width: 100%;
+    color:white;
 }
 
 .title-small {
@@ -477,6 +478,9 @@ span {
     width: 60vw;
     max-width: 100%;
   }
+  
+
+
   
 @media screen and (max-width: 768px) {
     .home-link img {
@@ -514,6 +518,12 @@ span {
 @media (max-width: 768px) {
     #menu-icon {
         display: block;
+    }
+
+    .portfolio-box img {
+        width: 330px;
+        height: 200px;
+        transition: .4s ease;
     }
 
     .navbar {
@@ -587,7 +597,7 @@ span {
         flex: 6; /* Increase this value to make the middle column larger */
         margin-left: 0px;
         margin-right: 0px;
-        background-color:  #323946;
+        background-color:   #F5F5F5;
         width: 100%;
         max-width: 100%;
     }
