@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/c30f794d-0830-4f0e-86a3-7548354a9bb1/resourceGroups/project-blog/providers/Microsoft.Web/sites/focoanalytics",
+    "appService.deploySubpath": "."
+}
