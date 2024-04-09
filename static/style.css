@@ -441,7 +441,7 @@ span {
 }
 
 .blog-text {
-    font-size: 15px;
+    font-size: 18px;
   }
 
 .code-box {
@@ -618,8 +618,9 @@ span {
         border-radius: 10px;
         padding:10px;
         font-family: monospace;
-        font-size: 11px; 
+        font-size: 8px; 
         max-width: 100%;
+        
     }
 
 }

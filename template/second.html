@@ -34,159 +34,177 @@
     <section class="blog" id="blog">
         <div class="foco_container">
             <div class="column middle">
-              <h2 class="center-text"><i class="fas fa-smile"></i> ¿Cómo construir tu propio blog?</h2>
+              <h2 class="center-text"><i class="fas fa-smile"></i>Docker</h2>
               <br>
               <br>
               <br>
               <p class="blog-text"> 
-                Desde hace algún tiempo, he tenido el deseo de crear mi propio contenido y finalmente me animé a hacerlo a través de un blog donde pueda compartir mis proyectos y experiencias. En este espacio, me enfocaré en temas relacionados con la inteligencia artificial y la ciencia de datos. Inicialmente pensé en crear este blog de la opción más sencilla: comprando un dominio y utilizar WordPress u otra herramienta de formato pre-armados para construirlo. Si bien esa ruta podría haber sido una excelente elección debido a la facilidad de crear un blog como un sitio web, tenía un interés personal en aprender más sobre HTML y CSS. Debido a esto, decidí tomar un camino más desafiante, construyéndolo desde una plantilla de html y utilizando diversas herramientas (Python, HTML, Docker) u entre otros.
+              Docker es la plataforma de contenedor más utilizada en la actualizada, la cual permite la creación, ejecución y la gestión de contenedores. Los contenedores son entornos ligeros y portátiles, que empaquetan todo lo necesario para la ejecución de una aplicación, incluyendo código, librerías y dependencia.  Los contenedores permiten construir código que puede ser ejecutando en cualquier maquina, sin importar sus dependencias del entorno o configuraciones, ya que crean sus propios ambientes, aislado de su entorno.
+              </p>
               </p>
               <br>
-              <br>
-              <h4 class="title-small"> 1-) ¿Cómo empecé?</h4>
+              <h4 class="title-small">¿Para qué se usa Docker?</h4>
               <br>
               <br>
               <p class="blog-text"> 
-                Para ser honesto, durante este proyecto he tenido que recurrir constantemente a dos fuentes principales: el ChatGPT y YouTube. A continuación, les explicaré por qué las he utilizado.
-              </p>
-              <ul class="blog-text" style="padding-left: 20px;">
-                <br>
-                <li><strong>  ChatGPT:</strong>  El ChatGPT es una herramienta sumamente poderosa para consultar temas de programación. Aunque ocasionalmente puede cometer errores, me ha proporcionado código muy valioso que, con algunas modificaciones, ha sido fundamental para avanzar en el proyecto. La gran mayoría de los códigos relacionados con la creación de elementos en HTML fueron proporcionados por el ChatGPT.</li>
-                <br>
-                <li><strong>  Youtube:</strong>  He utilizado mucho YouTube para aprender información sobre HTML y CSS. De hecho, el diseño del front es una plantilla que compré por 8 dólares en la web. El vídeo de YouTube al que hago referencia es: <a href="https://www.youtube.com/watch?v=Tkp3FDgOueM" style="color: #0ef;"><strong>https://www.youtube.com/watch?v=Tkp3FDgOueM</strong></a>.</li>
-              </ul>
-              <br>
-              <br>
-              <h4 class="title-small"> 2-) ¿Planilla en Youtube? </h4>
-              <br>
-              <p class="blog-text"> 
-                Tal como mencioné anteriormente, la mayor parte del diseño del front proviene de una plantilla adquirida a través del enlace proporcionado en YouTube. Esta plantilla incluye todos los formatos, colores y elementos necesarios, por lo que principalmente tuve que realizar algunos ajustes en ciertos aspectos, como el texto, las imágenes o la edición de secciones específicas más que otra cosa. Dicha plantilla contiene la siguiente información: 
+                Docker es una herramienta bastante importante en el desarrollo de software, la cual se puede usar para distintas tareas, tales como:
               </p>
               <ul class="blog-text" style="padding-left: 20px;">
                 <br>
-                <li><strong>  Style.css:</strong>  Incluye todos los formatos y diseños necesarios para darle formato al HTML</li>
-                <li><strong>  Imagenes:</strong>  Carpeta que contiene las imágenes utilizadas en la página.</a></li>
-                <li><strong>  Script.Js:</strong>  Es un archivo en JavaScript con las distintas funciones.</a></li>
-                <li><strong>  Index.html: </strong> Es el HTML del diseño frontal de la página..</a></li>
+                <li><strong>  Desarrollo de aplicaciones:</strong>  Docker entrega un entorno consistente para el desarrollo y pruebas de aplicaciones, generando un entorno de producción estable, reduciendo los problemas de compatibilidad e integración. </li>
+                <br>
+                <li><strong>  Micro servicios:</strong>  Docker es ideal en instalación de micro servicios, ya que las aplicaciones pueden ejecutarse independiente una de la otra, ejecutándose en sus propios contenedores.  En este caso, los modelos de machine learning pueden ser construidos como micro servicios, tanto para su entrenamiento como inferencia.</li>
               </ul>
               <br>
-              <p class="blog-text"> 
-                En cuanto al inicio de la página, realicé algunas modificaciones en el archivo index.html, conservando las secciones de inicio, sobre mí y artículos. Las demás secciones se eliminaron del HTML. Para este primer artículo fue necesario  crear un diferente html, el cual fue llamado first.html, y sigue el mismo formato que el anterior, pero incluye principalmente elementos de texto para el blog.
-              </p>  
               <br>
-              <h4 class="title-small"> 3-) ¿Cómo vincular todo?</h4>
+              <h4 class="title-small">¿Qué archivos son claves para desplegar un Docker?</h4>
+              <br>
               <br>
               <p class="blog-text"> 
-                En Python, existen diversos frameworks que se pueden emplear para crear aplicaciones web o plataformas, como Streamlit, Flask o Django. En este caso, dado que se trata de una página web sencilla, opté por utilizar Flask, empleando un código bastante simple para enlazar todos los componentes del codigo. Se creó un archivo App.py, con el siguiente código: 
+              Para construir y desplegar un contenedor dentro de un docker, se deben considerar tres principales archivos: 
               </p>
+              <ul class="blog-text" style="padding-left: 20px;">
+                <br>
+                <li><strong>  Dockerfile:</strong>  Este archivo posiblemente es el más importante en cualquier proyecto que utilice contenedor usando docker. Este archivo contiene una serie de instrucciones a seguir para construir la imagen del docker, desde la base, comando para instalar software, copiar archivos, variables de entorno hasta definir comando iniciales.  </li>
+                <br>
+                <li><strong>  .Dockerignore:</strong> Es un archivo se utiliza para determinar que elementos se deben ignorar al momento de ejecutar o construir la imagen. </li>
+                <br>
+                <li><strong> .Requestment.txt:</strong> Es el archivo que instala las librerías necesaria para la ejecución de la imagen. Este archivo es bastante importante en términos de dependencia entre librerías, ya que se debe tener cuidado con dependencias cruzadas entre librerias. </li>
+              </ul>
+              <br>
+              <br>
+              <h4 class="title-small">Ejemplo Práctico: ¿Cómo construir un API de Whisper usando Docker?</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Luego de entender un poco sobre docker y sus componentes, haré un pequeño ejemplo practico usando la librería de Whisper para construir un contenedor con Docker. El objetivo es construir un API que transcriba un audio a texto, entregando el texto como resultado, más el tiempo en ejecución. Adicionalmente, este docker lo implementare en una maquina virtual en GCP con GPU, aplicando comandos para instalar Docker dentro la VM, junto con comparar el rendimiento entre la velocidad de transcripción usando GPU, en comparación a no tenerla.
+                Toda esta información se encuentra en el siguiente repositorio:
+              <a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github</strong></a> 
+                </p>
+              <br>
+              <br>
+              <h4 class="title-small">DockerFile</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+               En este caso, el dockerfile es el siguiente:
+              </p>
+              <br>
               <br>
               <pre class="code-box">
-FROM python:3.10
+FROM nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
+WORKDIR /code
 
-RUN pip install -r requirements.txt
+RUN apt-get update && \
+apt-get install -y python3-pip libzbar0 \
+libgl1-mesa-glx
 
-EXPOSE 8080
+RUN apt-get update && apt-get install -y ffmpeg
 
-CMD python App.py
-              </pre>                
-              <br>
-              <p class="blog-text"> 
-                Un aspecto importante a destacar utilizando Flask es que, para poder utilizar tanto imágenes como el archivo style.css (HTML), es necesario crear una carpeta llamada "static" que contenga toda esta información. En mi caso, dentro de esta carpeta, almacené el archivo style.css y las imágenes del proyecto.
-              </p>
-              <br>
-              <p class="blog-text"> 
-                Por otra parte, encapsulé todo el código en un contenedor Docker para facilitar su alojamiento en la nube. Para ello, creé el archivo requirements.txt y el Dockerfile, que contienen el siguiente código:
-              </p>
-              <br>
-              <pre class="code-box">
-FROM python:3.10
+COPY ./requirements.txt /code/requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r \
+/code/requirements.txt
+RUN pip3 install torch torchvision torchaudio --extra-index-url  \
+https://download.pytorch.org/whl/cuda120
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
+# Copy main.py and servicewhisper.py to the container
+COPY ./main.py /code/main.py
+COPY ./servicewhisper.py /code/servicewhisper.py
 
-RUN pip install -r requirements.txt
-
-EXPOSE 8080
-
-CMD python App.py
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
               </pre>
               <br>
-              <h4 class="title-small"> 4-) ¿Cómo publicar la web?</h4> 
-              <br>             
-              <p class="blog-text"> 
-                Finalmente, hemos llegado a la última parte de este breve artículo sobre cómo poner en producción este proyecto. Dado mi interés en aprender más sobre el uso de Azure por mi trabajo personal como laboral, decidí implementar este proyecto en los servicios en la nube de Microsoft, utilizando mi cuenta personal con ese fin. A continuación, se presentan los principales pasos que seguí para lograrlo:
               <br>
+              <p class="blog-text"> 
+              En este caso, el docker es una secuencia de instrucciones, que su linea base es una imagen nvidia con CUDA instalado. Luego se instalan paquetes necesarios para que se ejecute whisper dentro del contenedor. Ademas, contiene el comando CMD, que al iniciar el contenedor, Docker ejecutará automáticamente el comando para arrancar el servidor Uvicorn con una aplicación FastAPI, que se encuentra en el archivo main.py. 
               </p>
-                <ol>
-                  <br>
-                  <br>
-                  <div class="column">
-                   <li class="blog-text">
-                    Se debe crea una cuenta en Azure a través del siguiente enlace
-                    <a href="https://azure.microsoft.com/en-us/free/" style="color: #0ef;"><strong>https://azure.microsoft.com/en-us/free/</strong></a>
-                  (Como cualquier servicio cloud, se debe añadir una tarjeta de crédito a la cuenta)  
-                    </li>
-                <br>
-                <li class="blog-text">
-                   Dentro de la consola, se debe crear un servicio de App Services, que servirá para ejecutar el Dockerfile del Github del proyecto. 
-                  Este servicio se puede encontrar escribiendo en el buscador de la consola “App Services”. Se debe seleccionar la opción “Contenedor” al momento de crear el servicio.
-                </li>
-                <br>
-                <li class="blog-text">
-                  Después de crear el servicio, ingresa a él y selecciona "Centro de Implementación" para vincular tu repositorio de GitHub con el servicio de Docker que has creado en Azure. A continuación, se detallan las principales opciones que debes configurar:
-                </li>
-                <ul class="blog-text" style="padding-left: 20px;">
-                  <br>
-                  <li><strong>  Origen del repositorio:</strong>  Elige la opción "GitHub" como origen del repositorio</li>
-                  <li><strong>  Autorización:</strong>  Haz clic en "Autorizar" para permitir que Azure acceda a tu cuenta de GitHub y pueda obtener los detalles del repositorio.</a></li>
-                  <li><strong>  Repositorio:</strong>  Selecciona el repositorio de GitHub que deseas vincular con el servicio de Docker en Azure</a></li>
-                  <li><strong>  Rama: </strong> Elige la rama específica de tu repositorio que deseas utilizar para la implementación en Azure..</a></li>
-                  <li><strong>  Configuración de implementación: </strong> Selecciona las opciones adecuadas para tu proyecto, como la configuración de compilación y despliegue continuo. Esto dependerá de las necesidades y características de tu aplicación.</a></li>
-                  <li><strong>  Guardar configuración: </strong> Finalmente, guarda la configuración realizada en el "Centro de Implementación" para vincular exitosamente tu repositorio de GitHub con el servicio de Docker en Azure.</a></li>
-                </ul> 
-                <br>
-                <li class="blog-text">
-                  Dominio personalizado: Después de implementar el servicio, es común que los servicios en la nube proporcionen una URL relacionada con sus servidores. En el caso de Azure, se entrega una URL como <proyecto>.azurewebsites.net.       
-                  Claramente, la URL proporcionada (<proyecto>.azurewebsites.net) no es común ni ampliamente utilizada en los sitios web convencionales. Para el desarrollo de esta pagina, se compro un dominio en GoDaddy, y se vinculo el desarrollo de este proyecto en el dominio comprado, para así, tener una URL con un dominio más normal.          
-                </li>
-                <br>
-                <p class="blog-text"> 
-                  Claramente, la URL proporcionada (<proyecto>.azurewebsites.net) no es común ni ampliamente utilizada en los sitios web convencionales. Para el desarrollo de esta pagina, se compro un dominio en GoDaddy, y se vinculo el desarrollo de este proyecto en el dominio comprado, para así, tener una URL con un dominio más normal.
-                <br>
-                <br>
-                <p class="blog-text"> 
-                  Después de adquirir el dominio, regresa a las opciones del servicio de App Service creado y selecciona "Dominio Personalizado". Haz click en "Agregar dominio personalizado", y completa la información requerida, donde lo unico que deberas preocuparte es que debes registrar los registros DNS en el proveedor de dominio. Para ello, debes ingresar a tu cuenta de GoDaddy, y en la sección de DNS, debes agregar los registros que te entrega Azure.
-                <br>
-                <br>
-                </div>
-                <p class="blog-text"> 
-                  Si logras realizar todos estos pasos, deberías tener tu proyecto en producción en la nube de Azure. En mi caso, el GitHub de todo el proyecto se encuentra en el siguiente enlace:
-                <br>
-                <br>
-                <style>
-                  .github-text {
-                    font-size: 16px;
-                  }
-                </style>                
-                <strong class="github-text">Github:</strong>
-                <a href="https://github.com/Foco22/FocoAnalytics" style="color: #0ef;">github.com/Foco22/FocoAnalytics</a><br>
-                <br>                
-                <p class="blog-text"> 
-                  Espero poder compartir más analisis, mi ideas o otros proyecto en el futuro en este sitio personal. Tambien, me gustaría poder implementarle un Chatbot, que seria algo muy entetenido de hacer en este mismo sitio web.             
-                <br>
-                <br>
-                <br>
-
-                </ol>
-             <br>
-            </div>
-            </div>
-        </div>
+              <br>
+              <br>
+              <h4 class="title-small">¿Qué contiene la API?</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                La API es capaz de recibir un archivo mp3 o un conjunto de archivos de ellos, los cuales serán procesados por el modelo de whisper para su transcripción, devolviendo un json como resultado. Para separar la transcripción, se construyó un archivo  serviceswhisper.py, el cual contiene el modelo de whisper.  Este archivo es simple, ya que llama al modelo, construye un archivo temporal el mp3, para luego introducirlo a whisper, y retornar el texto. 
+              </p>
+              <br>
+              <br>
+              <h4 class="title-small">¿Cómo desplegar el docker en un VM?</h4>   
+              <br>
+              <br>
+              <p class="blog-text"> 
+              Para desplegar la API, se usara una VM en Google para construir la imagen y ejecutar el contenedor. Se utilizó Google, ya que hay maquinas con imágenes pre-instaladas de Deeplearning y los driver de NVIDIA, facilitando enormemente la ejecución del docker con GPU, ya que solo se debe instalar el docker y ejecutar el docker.
+              Para este propósito, usando mi cuenta de GPC, en la sección de enginer computer, alquile una maquina con GPU (Nvidia T4), con un sistema operativo “Deep Learning On Linux” (imagen). Esta maquina cuesta alrededor de 200 dólares mensuales, pero solo la utilice una hora para este ejercicio.   
+              </p>
+              <br>
+              <p class="blog-text"> 
+                Al instalar la maquina y conectarse por SSH al terminal, se puede comprobar que los driver de NVIDIA estan instalados, ejecutando el siguiente comando en el terminal de la maquina:
+              </p>
+              <br>
+              <br>
+              <pre class="code-box">
+nvidia-smi
+              </pre>
+              <br>
+              <p class="blog-text"> 
+                Al ejecutar el comando anterior, debería aparecer lo siguiente en el terminal de la maquina:
+              </p>
+              <br>
+              <p class="blog-text"> 
+                Luego de esto, se debe instalar docker en la maquina, siguiendo los pasos descrito en el Github del repositorio. Esto se puede ver en detalle en el link (<a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github </strong></a>).
+              </p>             
+              <br>
+              <p class="blog-text"> 
+              Después, se debe construir la imagen docker, usando el siguiente comando:
+              </p>  
+              <br>
+              <br>
+              <pre class="code-box">
+docker build -t whisper .
+              </pre>
+              <br>
+              <br>    
+              <p class="blog-text"> 
+                Finalmente, se debe ejecutar la imagen del contenedor previamente construida. Si se requiere ejecutar con la GPU de la maquina virtual, se debe utilizar el siguiente comando:
+              </p> 
+              <br>
+              <br>  
+              <pre class="code-box">
+docker run --gpus all -p 8000:80 whisper
+              </pre>               
+              <br>
+              <br>
+              <p class="blog-text"> 
+                No obstante, si requiere ejecutar sin ella, se utiliza:
+              </p>
+              <br>
+              <br>
+              <pre class="code-box">
+docker run -p 8000:80 whisper
+              </pre>               
+              <br>   
+              <br>
+              <p class="blog-text"> 
+                Independiente de la forma de ejecutar el docker, al ejecutar el contenedor, se levantará un endpoint llamado api/whisper en el puerto 8000. Este endpoint puede ser accesible desde una maquina afuera de GCP configurando las reglas de firewall en GPC, mediante la creación de una nueva regla de Firewall, que permita que para todas las instancias dejar abierto el puerto TCP 8000.
+              </p>
+              <br>   
+              <br>
+              <p class="blog-text"> 
+                Después de configurar las reglas de firewall, dentro del github se encuentra un audio llamado audio.mp3, el cual tiene una duración alrededor de 15 minutos, y puede ser usado para la transcripción. El endpoint puede ser utilizado mediante el siguiente código:
+              </p>
+              <br>
+              <br>
+              <pre class="code-box">
+url = 'http://Externa IP:8000/api/whisper'
+files = {'files': ('filename.mp3', open('audio.mp3', 'rb'), 'audio/mpeg')}
+response = requests.post(url, files=files)
+              </pre> 
+              <br>   
+              <br>
+              <p class="blog-text"> 
+              Al ejecutar el código usando el comando con “–-gpu”, el  tiempo de transcripción es 45 segundo aproximadamente. No obstante, si se ejecuta sin gpu, el tiempo promedio es 190 segundo aprox, representando una aumento de un 422% respecto a tener tarjeta grafica. 
+              </p>
+              
     </section>
     <!-- scroll reveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
