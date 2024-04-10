@@ -480,8 +480,22 @@ span {
   }
   
 
+.image-container {
+text-align: center;
+padding: 20px;
+}
 
-  
+.image-container img {
+max-width: 100%;
+height: auto;
+border-radius: 10px;
+display: block; /* This removes any extra space below the image */
+width: 100%; /* This will make the image take the full width of its container */
+
+}
+
+
+
 @media screen and (max-width: 768px) {
     .home-link img {
       width: 100%;
