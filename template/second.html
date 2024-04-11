@@ -39,7 +39,7 @@
               <br>
               <br>
               <p class="blog-text"> 
-              Docker es la plataforma de contenedor más utilizada en la actualizada, la cual permite la creación, ejecución y la gestión de contenedores. Los contenedores son entornos ligeros y portátiles, que empaquetan todo lo necesario para la ejecución de una aplicación, incluyendo código, librerías y dependencia.  Los contenedores permiten construir código que puede ser ejecutando en cualquier maquina, sin importar sus dependencias del entorno o configuraciones, ya que crean sus propios ambientes, aislado de su entorno.
+              Docker es la plataforma de contenedor más utilizada en la actualizada, la cual permite la creación, ejecución y la gestión de contenedores. Los contenedores son entornos ligeros y portátiles, que empaquetan todo lo necesario para la ejecución de una aplicación, incluyendo código, librerías y dependencia.  Los contenedores permiten construir código que puede ser ejecutando en cualquier maquina, sin importar dependencias del entorno o configuraciones de sistema.
               </p>
               </p>
               <br>
@@ -77,7 +77,7 @@
               <br>
               <br>
               <p class="blog-text"> 
-                Luego de entender un poco sobre docker y sus componentes, haré un pequeño ejemplo practico usando la librería de Whisper para construir una API de Whisper usando docker. Este endpoint permitirá transcribir un audio a texto, entregando el texto como resultado, más el tiempo en ejecución. Adicionalmente, este docker lo construire en una maquina virtual en GCP con GPU, aplicando comandos para instalar Docker dentro la VM, junto con comparar el rendimiento entre la velocidad de transcripción usando GPU, y no tenerla.
+                Este endpoint permitirá transcribir un audio a texto, entregando el texto como resultado, más el tiempo en ejecución. Adicionalmente, construiré este docker en una máquina virtual en GCP con GPU, aplicando comandos para instalar Docker dentro de la VM, junto con comparar el rendimiento entre la velocidad de transcripción usando GPU y no tenerla. 
                 
                 Nota: Toda esta información se encuentra en el siguiente repositorio:
               <a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github</strong></a> 
@@ -106,6 +106,7 @@ RUN apt-get update && apt-get install -y ffmpeg
 COPY ./requirements.txt /code/requirements.txt
 RUN pip3 install --no-cache-dir --upgrade -r \
 /code/requirements.txt
+
 RUN pip3 install torch torchvision torchaudio --extra-index-url  \
 https://download.pytorch.org/whl/cuda120
 
@@ -118,7 +119,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
               <br>
               <br>
               <p class="blog-text"> 
-              Como se mencionó anteriormente, el docker es una secuencia de instrucciones. En este caso, su linea base es una imagen nvidia con CUDA instalado. Posteriomente, se instalan paquetes necesarios para que se ejecute whisper dentro del contenedor. Ademas, contiene el comando CMD, que al iniciar el contenedor, Docker ejecutará automáticamente el comando para arrancar el servidor Uvicorn con una aplicación FastAPI, que se encuentra en el archivo main.py. 
+              Como se mencionó anteriormente, el docker es una secuencia de instrucciones. En este caso, su linea base es una imagen nvidia con CUDA instalado. Posteriomente, se instalan paquetes necesarios para que se ejecute whisper dentro del contenedor (ffmpeg). Además, contiene el comando CMD, que al iniciar el contenedor, Docker ejecutará automáticamente el comando para arrancar el servidor Uvicorn con una aplicación FastAPI, que se encuentra en el archivo main.py. 
               </p>
               <br>
               <br>
@@ -134,12 +135,11 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
               <br>
               <br>
               <p class="blog-text"> 
-              Para desplegar la API, se utilizó una VM en Google para construir la imagen y ejecutar el contenedor. Google tiene maquinas con imágenes pre-instaladas de Deeplearning y los driver de NVIDIA, facilitando enormemente la ejecución de contenedores con GPU, ya que solo se debe instalar construir la imagen y ejecutar el contenedor.
-              Para este propósito, usando mi cuenta de GPC, en la sección de enginer computer, alquile una maquina con GPU (Nvidia T4), con un sistema operativo “Deep Learning On Linux” (imagen). Esta maquina cuesta alrededor de 200 dólares mensuales, pero  como la utilice aproximadamente una hora para este ejercicio, no fue mayor gasto.   
+                Para desplegar la API, se utilizó una VM en Google para construir la imagen y ejecutar el contenedor. Google tiene maquinas con imágenes pre-instaladas de Deeplearning y drivers de NVIDIA, facilitando enormemente la ejecución de contenedores usando GPU.Para este propósito, usando mi cuenta de GPC, en la sección de Enginer Computer, alquile una maquina con GPU (Nvidia T4), con un sistema operativo “Deep Learning On Linux” (imagen). Esta maquina cuesta alrededor de 200 dólares mensuales, pero como la utilice aproximadamente una hora para este ejercicio, no fue mayor gasto.
               </p>
               <br>
               <p class="blog-text"> 
-                Al instalar la maquina y conectarse por SSH al terminal, se puede comprobar que los driver de NVIDIA estan instalados, ejecutando el siguiente comando en el terminal de la maquina:
+                Al instalar la maquina y conectarse por SSH al terminal, se puede comprobar que los driver de NVIDIA estan instalados, ejecutando el siguiente comando en su terminal:
               </p>
               <br>
               <br>
@@ -148,7 +148,7 @@ nvidia-smi
               </pre>
               <br>
               <p class="blog-text"> 
-                Al ejecutar el comando anterior en el terminal de la maquina, debería aparecer una imagen parecida a la siguiente:
+                Si no hay ningun error, en el terminal, debería aparecer una imagen parecida a la siguiente:
               </p>
               <br>
               <div class="image-container">
@@ -157,7 +157,7 @@ nvidia-smi
               <br>
               <br>
               <p class="blog-text"> 
-                Esta imagen demuestra que los driver de NVIDIA estan instalados en la maquina, siendo capaz de ejecutar codigos que requieran GPU. Despues, se debe instalar docker en la maquina, siguiendo los pasos descrito en el Github del repositorio. Esto se puede ver en detalle en el link (<a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github </strong></a>).
+                Esta imagen demuestra que los driver de NVIDIA estan instalados en la maquina, siendo capaz de ejecutar codigos que requieran GPU. Despues, se debe instalar docker en la maquina, siguiendo los pasos descrito en el Github del repositorio. (<a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github </strong></a>).
               </p>             
               <br>
               <p class="blog-text"> 
@@ -208,9 +208,8 @@ response = requests.post(url, files=files)
               <br>   
               <br>
               <p class="blog-text"> 
-              Al ejecutar el código usando el comando con “–-gpu”, el tiempo de transcripción es 45 segundo aproximadamente. No obstante, si se ejecuta sin gpu, el tiempo promedio es 190 segundo aprox, representando una aumento de un 422% respecto a tener tarjeta grafica. 
+              Al ejecutar el código usando el comando con “–-gpu”, el tiempo de transcripción es 45 segundos. No obstante, si se ejecuta sin gpu, el tiempo promedio es 190 segundos aprox, representando una aumento de un 422% respecto a tener tarjeta grafica. 
               </p>
-              
     </section>
     <!-- scroll reveal -->
     <script src="https://unpkg.com/scrollreveal"></script>
@@ -223,3 +222,6 @@ response = requests.post(url, files=files)
 </body>
 </html>
 
+
+
+   

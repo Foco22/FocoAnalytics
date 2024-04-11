@@ -494,8 +494,34 @@ width: 100%; /* This will make the image take the full width of its container */
 
 }
 
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
 
 
+.code-container {
+    background-color: black;
+    border-left: 5px solid #f08080;
+    margin: 20px;
+    padding: 10px;
+    font-family: "Courier New", Courier, monospace;
+  }
+
+.copy-button {
+position: absolute;
+right: 10px;
+top: 10px;
+padding: 5px 10px;
+background: #e7e7e7;
+border: none;
+cursor: pointer;
+}
 @media screen and (max-width: 768px) {
     .home-link img {
       width: 100%;
