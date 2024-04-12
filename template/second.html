@@ -34,7 +34,7 @@
     <section class="blog" id="blog">
         <div class="foco_container">
             <div class="column middle">
-              <h2 class="center-text"><i class="fas fa-smile"></i>Docker</h2>
+              <h2 class="center-text"><i class="fas fa-smile"></i>¿Qué es un Docker?</h2>
               <br>
               <br>
               <br>
@@ -88,7 +88,7 @@
               <br>
               <br>
               <p class="blog-text"> 
-               Para empezar, se construyó un dockerfile, que contiene la siguiente información:
+               Inicialmente, se construyó un dockerfile, que contiene la siguiente información:
               </p>
               <br>
               <br>
@@ -119,7 +119,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
               <br>
               <br>
               <p class="blog-text"> 
-              Como se mencionó anteriormente, el docker es una secuencia de instrucciones. En este caso, su linea base es una imagen nvidia con CUDA instalado. Posteriomente, se instalan paquetes necesarios para que se ejecute whisper dentro del contenedor (ffmpeg). Además, contiene el comando CMD, que al iniciar el contenedor, Docker ejecutará automáticamente el comando para arrancar el servidor Uvicorn con una aplicación FastAPI, que se encuentra en el archivo main.py. 
+              Como se mencionó anteriormente, el docker es una secuencia de instrucciones. En este caso, su linea base es una imagen nvidia con CUDA instalado. Posteriormente, se instalan paquetes necesarios para que se ejecute whisper dentro del contenedor (ffmpeg). Además, contiene el comando CMD, que al iniciar el contenedor, Docker ejecutará automáticamente el comando para arrancar el servidor Uvicorn con una aplicación FastAPI. 
               </p>
               <br>
               <br>
@@ -139,7 +139,7 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
               </p>
               <br>
               <p class="blog-text"> 
-                Al instalar la maquina y conectarse por SSH al terminal, se puede comprobar que los driver de NVIDIA estan instalados, ejecutando el siguiente comando en su terminal:
+                Al instalar la maquina y conectarse por SSH al terminal, se puede comprobar que los driver de NVIDIA están instalados, ejecutando el siguiente comando en su terminal:
               </p>
               <br>
               <br>
@@ -148,7 +148,7 @@ nvidia-smi
               </pre>
               <br>
               <p class="blog-text"> 
-                Si no hay ningun error, en el terminal, debería aparecer una imagen parecida a la siguiente:
+                Si no hay ningún error en el terminal, debería aparecer una imagen parecida a la siguiente:
               </p>
               <br>
               <div class="image-container">
@@ -157,11 +157,11 @@ nvidia-smi
               <br>
               <br>
               <p class="blog-text"> 
-                Esta imagen demuestra que los driver de NVIDIA estan instalados en la maquina, siendo capaz de ejecutar codigos que requieran GPU. Despues, se debe instalar docker en la maquina, siguiendo los pasos descrito en el Github del repositorio. (<a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github </strong></a>).
+                Esta imagen demuestra que los driver de NVIDIA están instalados en la maquina, siendo capaz de ejecutar códigos que requieran GPU. Después, se debe instalar docker en la maquina, siguiendo los pasos descrito en el Github del repositorio. (<a href="https://github.com/Foco22/whispera-api " style="color: #673AB7;"><strong>Github </strong></a>).
               </p>             
               <br>
               <p class="blog-text"> 
-              Después, se debe construir la imagen docker, usando el siguiente comando:
+              Para construir la imagen docker, se puede utilizar el siguiente comando:
               </p>  
               <br>
               <br>
@@ -191,13 +191,12 @@ docker run -p 8000:80 whisper
               <br>   
               <br>
               <p class="blog-text"> 
-                Independiente de la forma de ejecutar el docker, al ejecutar el contenedor, se levantará un endpoint llamado api/whisper en el puerto 8000. Este endpoint puede ser accesible desde una maquina afuera de GCP configurando las reglas de firewall, mediante la creación de una nueva regla de Firewall, que permita poder acceder al puerto 8000 desde cualquier instancia en Google.
+                Independiente de la forma de ejecutar el docker, se levantará un endpoint llamado api/whisper en el puerto 8000. Este endpoint puede ser accesible desde la misma maquina u otra de afuera de GCP configurando las reglas de firewall, mediante la creación de una nueva regla de Firewall, que permita poder acceder al puerto 8000 desde cualquier instancia en Google.
               </p>
               <br>   
               <br>
               <p class="blog-text"> 
-                Después de configurar las reglas de firewall, dentro del github se encuentra un audio llamado audio.mp3, el cual tiene una duración alrededor de 15 minutos, y puede ser usado para la transcripción. El endpoint puede ser utilizado mediante el siguiente código:
-              </p>
+                Dentro del github se encuentra un audio llamado audio.mp3, el cual tiene una duración alrededor de 15 minutos, y puede ser usado para la transcripción. El endpoint puede ser validado utilizado el siguiente código:              </p>
               <br>
               <br>
               <pre class="code-box">
@@ -208,7 +207,7 @@ response = requests.post(url, files=files)
               <br>   
               <br>
               <p class="blog-text"> 
-              Al ejecutar el código usando el comando con “–-gpu”, el tiempo de transcripción es 45 segundos. No obstante, si se ejecuta sin gpu, el tiempo promedio es 190 segundos aprox, representando una aumento de un 422% respecto a tener tarjeta grafica. 
+                Al ejecutar el código usando el comando con “–-gpu”, el tiempo de transcripción es de 45 segundos. No obstante, si se ejecuta sin gpu, el tiempo es de 190 segundos aprox, representando una aumento de un 422% respecto a tener tarjeta gráfica. 
               </p>
     </section>
     <!-- scroll reveal -->
