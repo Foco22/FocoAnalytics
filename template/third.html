@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocoAnalytics.</title>
+    <link rel="icon" href="static/logofoco.png" type="image/x-icon">
+   <!-- Open Graph / Facebook -->
+   <meta property="og:type" content="website">
+   <meta property="og:url" content="https://www.focoanalytics.org/second.html">
+   <meta property="og:title" content="FocoAnalytics">
+   <meta property="og:description" content="Explore insightful analytics and technologies with FocoAnalytics.">
+   <meta property="og:image" content="https://focoanalytics.org/static/secondblog/banner2.jpg">
+
+    <!-- box icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+    <!-- custom css -->
+    <link rel="stylesheet" href="static/style.css">
+    <!-- Other head elements -->
+    <link rel="stylesheet" href="static/secondblog/default.min.css">
+    <script src="static/secondblog/highlight.js"></script>    
+    <script>hljs.initHighlightingOnLoad();</script>
+   <style>
+</style>
+</head>
+<body>
+    <header class="header">
+        <a href="/#home" class="logo">FocoAnalytics.</a>
+
+        <div class='bx bx-menu' id="menu-icon"></div>
+
+        <nav class="navbar">
+            <a href="/#home" class="active home-class">Inicio</a>
+            <a href="/#about" class="about-class">¿Quién soy?</a>
+            <a href="/#portfolio" class="portfolio-class">Ideas</a>
+            <link rel="icon" href="static/logofoco.png" type="image/x-icon">
+        </nav>
+    </header>
+    <section class="blog" id="blog">
+        <div class="foco_container">
+            <div class="column middle">
+              <br>
+              <br>
+              <div class="image-container">
+                <img src="static/thirdblog/web.jpg">
+              </div>  
+              
+              <br>
+              <br>
+              <h2 class="center-text"><i class="fas fa-smile"></i>Post N° 3: ¿Cómo conseguir una BBDD de propiedades en Chile?</h2>
+              <br>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Actualmente, la industria inmobiliaria en Chile enfrenta una situación complicada debido a las altas tasas de interés y al significativo aumento del valor de la UF en los últimos años. Debido a esto, es relevante contar con la mayor cantidad de información posible sobre los precios de departamentos y viviendas para tomar decisiones. El Portal Inmobiliario es probablemente la fuente más confiable y extensa para obtener información sobre proyectos inmobiliarios. Sin embargo, existen otras alternativas que, aunque menos populares, pueden ofrecer una muestra representativa del comportamiento de precios y disponibilidad de proyectos en Chile.    
+              </p>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Chilepropiedades es una página web donde se publican propiedades para comprar y arrendar en Chile. Esta plataforma proporciona información detallada sobre precios, número de dormitorios, baños y la ubicación de las propiedades. Este artículo entrega una API que permite extraer información de este sitio mediante web scraping, utilizando parámetros de entrada para la búsqueda de información, de la misma manera que lo haría un usuario en el navegador.
+              </p>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Es importante destacar que este proceso de web scraping depende de los elementos del HTML del sitio web. Si en el futuro se realizan modificaciones en el HTML, es probable que esta API falle o necesite ajustes para adaptarse a los cambios realizados, como ocurre con cualquier proceso de web scraping.
+              </p>
+              <br>
+              <h4 class="title-small">¿Cómo fue construida?</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                ChilePropiedades es un portal que no tiene ningún elemento de JavaScript que obligue a usar Selenium (una biblioteca de Python más avanzada para web scraping), por lo que la extracción de la información es más simple y rápida. En este caso, se utilizó BeautifulSoup para extraer los elementos del HTML junto con sus valores. Para hacer esto, se tuvieron que entregar los parámetros de entrada en la búsqueda, de la misma manera que lo haría un usuario al buscar información en el sitio. Estos parámetros se muestran en la siguiente imagen:
+              </p>
+              <br> 
+              <div class="image-container">
+                <img src="static/thirdblog/Chilepropiedades.png">
+              </div>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                El sitio web contiene tres parámetros de entrada, que son:
+              </p>    
+              <ul class="blog-text" style="padding-left: 20px;">
+                <br> 
+                <li><strong>Tipo de Búsqueda:</strong>  Es el tipo de búsqueda del usuario. Sus valores pueden ser arrendar, comprar o arriendo diario.  </li>
+                <li><strong>Tipo de Propiedad:</strong> Es el tipo de propiedad que el usuario quiere buscar en la página. Hay un conjunto variado de tipos de propiedades, desde bodegas hasta terrenos industriales. La gran mayoría de las propiedades se concentran en departamentos y casas. </li>
+                <li><strong>Ubicación:</strong> Es la ubicación de la propiedad que se quiere buscar en el sitio. La ubicación puede ser desde comunas hasta regiones de Chile.  </li>
+              </ul>
+              <br>
+              <p class="blog-text"> 
+                Adicionalmente, para poder extraer la información de forma cronológica, se construyeron dos parámetros más como inputs de la API, permitiendo extraer la información en rangos de tiempo específicos.
+              </p>
+              <ul class="blog-text" style="padding-left: 20px;">
+                <br> 
+                <li><strong>Fecha mínima de publicación:</strong>  Define la fecha a partir de la cual se quiere comenzar a extraer la información de las propiedades publicadas. </li>
+                <li><strong>Fecha máxima de publicación:</strong> Define la fecha hasta la cual se quiere extraer la información de las propiedades publicadas. </li>
+                <br>
+               </ul>
+               <p class="blog-text"> 
+                Con todos estos parámetros, se construyó una función en Python que extrae la información de cada una de las propiedades de la siguiente manera:
+              </p>
+              <br>
+              <pre class="code-box">
+class GetDataChilePropiedades:
+
+def __init__(self, region, type_searching, type_house, min_publish_date, max_publish_date):
+    self.region = region
+    self.type_searching = type_searching
+    self.type_house = type_house
+    self.min_publish_date = min_publish_date
+    self.max_publish_date = max_publish_date
+
+def getdata(self):
+
+    extracted_data = []
+    url = 'https://chilepropiedades.cl/propiedades/{}/{}/{}/0'.format(self.type_searching, 
+    self.type_house,self.region)
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 
+        (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, 'html.parser')
+    element_page = soup.find_all('div', 
+    class_='clp-results-text-container d-none d-sm-block col-sm-6 text-right')
+    
+    max_count_page = element_page[0].text
+    pattern = r"Total de páginas:\s+(\d+)"
+    match = re.search(pattern, max_count_page)
+    if match:
+        total_pages = match.group(1)
+    else:
+        return {
+            'response': extracted_data,
+            'status': True
+        }
+
+    table_count_page = [i for i in range(int(total_pages))]
+    
+    for page in table_count_page:
+        try:    
+            url =   
+
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+                AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+            }
+            response = requests.get(url, headers=headers)
+            soup = BeautifulSoup(response.content, 'html.parser')
+            element_page = soup.find_all('p', 
+            class_='mt-3 p-3 clp-highlighted-container text-center')
+
+            time.sleep(3)
+
+            if element_page != []:
+                continue
+
+            # Find all the publication elements
+            elements = soup.find_all('div', class_='clp-publication-list')
+            list_element_public = elements[0].find_all('div', 
+            class_='clp-publication-element clp-highlighted-container')
+
+
+            # Iterate over each publication element
+            for element in list_element_public:
+                
+                try:
+                    date_publish = element.find('div', class_='text-center clp-publication-date').text.strip()
+                    date_publish_datetime = datetime.strptime(date_publish, "%d/%m/%Y")                        
+                    date_publish_datetime = str(date_publish_datetime)[:10]
+                except:
+                    date_publish_datetime = '1990-01-01'
+                
+                ## Filter by date
+                if (date_publish_datetime >= self.min_publish_date) and (date_publish_datetime <= self.max_publish_date):
+
+                    # Images 
+                    try:
+                        img_publish_list = element.find('a', class_='clp-listing-image-link')
+                        img_element = img_publish_list.find('picture').find('img')['src']
+                    except:
+                        img_element = ''
+
+                    # Extract rooms
+                    try:
+                        rooms_span = element.find('span', title='Habitaciones')
+                        rooms = rooms_span.find('span', class_='clp-feature-value').text if rooms_span else None
+                    except:
+                        rooms = 0
+
+                    # Extract bathrooms
+                    try:
+                        bathrooms_span = element.find('span', title='Baños')
+                        bathrooms = bathrooms_span.find('span', class_='clp-feature-value').text if bathrooms_span 
+                        else None
+                    except:
+                        bathrooms = 0
+
+                    # Extract value price
+                    try:
+                        value_spans = element.find_all('span', class_='clp-value-container', attrs={'valueunit': '1'})
+                        value_price_clp = value_spans[1].text.strip() if len(value_spans) > 1 else None
+                    except:
+                        value_price_clp = 0
+
+                    # Extract value currency
+                    try:
+                        value_spans = element.find_all('span', class_='clp-value-container', attrs={'valueunit': '1'})
+                        value_price_currency_clp = value_spans[0].text.strip() if len(value_spans) > 1 else None
+                    except:
+                        value_price_currency_clp = 0
+
+                    # Extract value price
+                    try:
+                        value_spans = element.find_all('span', class_='clp-value-container', attrs={'valueunit': '3'})
+                        value_price_uf = value_spans[1].text.strip() if len(value_spans) > 1 else None
+                    except:
+                        value_price_uf = 0
+
+                    # Extract value currency
+                    try:
+                        value_spans = element.find_all('span', class_='clp-value-container', attrs={'valueunit': '3'})
+                        value_price_currency_uf = value_spans[0].text.strip() if len(value_spans) > 1 else None
+                    except:
+                        value_price_currency_uf = 0
+
+                    # Extract parking lots
+                    try:
+                        parking_span = element.find('span', title='Estacionamientos')
+                        parking = parking_span.find('span', class_='clp-feature-value').text if parking_span else None
+                    except:
+                        parking = 0  
+
+                    try:
+                        h2_element = element.find('h2', class_='publication-title-list')
+                        a_tag = h2_element.find('a') if h2_element else None
+                        href = a_tag['href'] if a_tag else None
+                        url_element = 'https://chilepropiedades.cl' + href
+                    except: 
+                        url_element = ''      
+
+                    try:
+                        data_element = element.find('div', class_='d-md-flex mt-2 align-items-center')
+                        data_element = data_element.find('h3', class_='sub-codigo-data').text.split('/')
+                        type_action = data_element[0].strip()
+                        type_property = data_element[1].strip()
+                        type_province = data_element[2].strip()
+                    except:
+                        type_action = ''
+                        type_property = ''
+                        type_province = ''
+
+                    # code publication
+                    try: 
+                        code_publication = element.find('div', class_='d-md-flex mt-2 align-items-center')
+                        code_publication = code_publication.find('span', class_='light-bold').next_sibling.strip()
+                    except:
+                        code_publication = ''
+
+                    # get latitude and longitude
+                    response = requests.get(url_element, headers=headers)
+                    time.sleep(3)
+                    soup = BeautifulSoup(response.content, 'html.parser')
+                    script_element = soup.find_all('script')
+
+                    for i in range(len(script_element)):
+                        location_pattern = r'var publicationLocation = \[\s*(-?\d+\.\d+),\s*(-?\d+\.\d+)\s*\];'
+                        matches = re.findall(location_pattern, str(script_element[i]))
+                        if matches:
+                            latitude, longitude = matches[0] 
+                            break
+                        else:
+                            latitude = None
+                            longitude = None
+
+                        # Add to the list
+                    extracted_data.append({
+                        'rooms': rooms,
+                        'bathrooms': bathrooms,
+                        'value_price_clp': value_price_clp,
+                        'value_price_currency_clp': value_price_currency_clp,
+                        'value_price_uf': value_price_uf,
+                        'value_price_currency_uf': value_price_currency_uf,
+                        'parking': parking,
+                        'url': url_element,
+                        'type_action': type_action,
+                        'type_property': type_property,
+                        'type_province': type_province,
+                        'latitude': latitude,
+                        'longitude': longitude,
+                        'page': page,
+                        'region': self.region,
+                        'type_searching': self.type_searching,
+                        'type_house': self.type_house,
+                        'date_publish': date_publish,
+                        'code_publication': code_publication,
+                        'image_picture': img_element,
+                        'web': 'chilepropiedades',
+                    })
+                elif (date_publish_datetime < self.min_publish_date):
+                    return {
+                        'response': extracted_data,
+                        'status': True
+                    }
+        except:
+            pass
+    return {
+        'response': extracted_data,
+        'status': True
+    }
+              </pre>
+              <br>
+              <br> 
+              <p class="blog-text"> 
+                Este código contiene la lógica de la extracción de la información desde la página, dividiéndose en dos principales secciones.
+              </p>
+              <br> 
+              <ul class="blog-text" style="padding-left: 20px;">
+                <li><strong>Página por página</strong>  Para esta sección, se utiliza la biblioteca requests y los parámetros del usuario para extraer la información del html resultante de la consulta del usuario. El sitio web genera  URLs paramétricas según la búsqueda del usuario, donde cada página de búsqueda si diferencia por el numero de pagina, sin haber elementos adicionales para su interpretación. La URL estandar de busqueda es: </li>
+                <br> 
+                <pre class="code-box">
+'https://chilepropiedades.cl/propiedades/{}/{}/{}/{}'.format(self.type_searching, self.type_house, self.region, page)
+                </pre> 
+                <br> 
+                <p class="blog-text"> 
+                    Cualquier búsqueda del usuario empieza en la página 0, y dependiendo de la cantidad de propiedades publicadas, dependerá la máxima cantidad de páginas. Esta información se encuentra al final de la pagina inicial, en el elemento que dice: “Total de páginas: X”.  
+                    Para extraer todo las propiedades se realizo un ciclo for, el cual recorre todas las páginas de la búsqueda del usuario. 
+                </p>
+                <br> 
+                <li><strong>Información de cada propiedad:</strong> Luego de haber extraído el HTML de la página, se procede a extraer la información de cada una de las propiedades, mediante una iteración de las propiedades obtenidas de la pagina. En esta parte, se identificaron cada uno de los características de una propiedad, tal como: precio, número de baños, habitaciones, moneda, estacionamientos, imágenes, código de publicación, latitud y longitud. </li>
+                <br>
+               </ul>
+              <br> 
+              <p class="blog-text"> 
+                Junto con esto, el codigo en python incluye una manera para poder extraer solo propiedades entre rango de fecha, permitiendo extraer propiedades que fueron publicadas entre dos periodos de tiempo especificos. 
+              </p>
+              <br>
+              <h4 class="title-small">¿Cómo empaquetar la función dentro de una API?</h4>
+              <br> 
+              <p class="blog-text"> 
+                Para poder dejar esta función dentro de un componente más estable, se construyó un contenedor con API Flask, el cual almacena la función construida en un endpoint llamado   webscraping. Esta implementación recibe los parametros region, type_searching, type_house, min_publish_date y max_publish_date, los cuales son los mismos que se utilizan en la función de Python.
+              </p>
+              <br>
+              <p class="blog-text"> 
+                Para poder levantar el contenedor, se debe tener instalado Docker y ejecutar los siguientes comandos:   
+              </p>
+              <br>
+              <pre class="code-box">
+docker build -t my-flask-app .
+
+docker run -d -p 8000:8000 my-flask-app
+              </pre>
+              <br>
+              <p class="blog-text"> 
+                Se habilitará un endpoint en el puerto 8000 con el nombre de "/webscrapping", el cual puede probarse usando las siguientes lineas de código:
+              </p>
+              <br>
+              <pre class="code-box">
+import requests
+
+url = "http://localhost:8000/webscrapping"
+data = {
+"region": "santiago",
+"type_searching": "arriendo-mensual",
+"type_house": "departamento",
+"min_publish_date": "2024-05-23",
+"max_publish_date": "2024-05-24"
+}
+
+response = requests.post(url, json=data)
+              </pre>     
+              <br>
+              <br>
+              <h4 class="title-small">Conclusiones</h4>
+              <br>
+              <br>
+              <p class="blog-text"> 
+                Espero que esta implementación le pueda servir a alguien que esté buscando información de propiedades. Sabiendo que esto es una implementación de web scraping, que depende mucho del HTML, tiene sus pro y contra, ya que es una manera factible de poder extraer información del mercado inmobiliario hoy en día, pero dependerá mucho de los cambios del sitio . Si quiere tener mayores detalles del código, no dude en revisar el repositorio del código.
+              </p>      
+              <br>
+              <p class="blog-text"> 
+                Si quiere tener mayores detalles del código, no dude en revisar el repositorio del código.
+              </p>  
+              <br>
+              <p class="blog-text"> 
+                Repositorio: <a href="https://github.com/Foco22/webscraping-chilepropiedades" style="color: #673AB7;"><strong>Github</strong></a> 
+              </p>    
+    </section>
+    <!-- scroll reveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- typed js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <!-- custom js -->
+    <script src="static/script.js"></script>
+</body>
+</html>
+
+
+
+   
