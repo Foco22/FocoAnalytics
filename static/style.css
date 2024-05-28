@@ -436,7 +436,7 @@ span {
     flex: 4; /* Increase this value to make the middle column larger */
     margin-left: 20px;
     margin-right: 20px;
-    background-color:  white;
+    background-color: #fcfcfc;
 }
 
 .center-text {
