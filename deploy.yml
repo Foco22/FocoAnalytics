@@ -19,15 +19,12 @@ jobs:
     - name: Login to Azure
       uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Login to Azure Container Registry
-      uses: azure/docker-login@v1
+      uses: docker/login-action@v2
       with:
-        login-server: fococontain.azurecr.io
+        registry: fococontain.azurecr.io
         username: ${{ secrets.AZURE_CLIENT_ID }}
         password: ${{ secrets.AZURE_CLIENT_SECRET }}
 
@@ -37,3 +34,4 @@ jobs:
         context: .
         push: true
         tags: fococontain.azurecr.io/fmacayasecurity/focoanalytics:latest
+
