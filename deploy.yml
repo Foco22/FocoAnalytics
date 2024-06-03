@@ -1,4 +1,3 @@
-##test
 name: Build and Push Docker Image
 
 on:
@@ -26,9 +25,9 @@ jobs:
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Login to Azure Container Registry
-      uses: docker/login-action@v2
+      uses: azure/docker-login@v1
       with:
-        registry: fococontain.azurecr.io
+        login-server: fococontain.azurecr.io
         username: ${{ secrets.AZURE_CLIENT_ID }}
         password: ${{ secrets.AZURE_CLIENT_SECRET }}
 
