@@ -16,6 +16,17 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
 
+    - name: Check Secret Values
+      run: |
+        echo "AZURE_CLIENT_ID length: ${#AZURE_CLIENT_ID}"
+        echo "AZURE_TENANT_ID length: ${#AZURE_TENANT_ID}"
+        echo "AZURE_SUBSCRIPTION_ID length: ${#AZURE_SUBSCRIPTION_ID}"
+      env:
+        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
     - name: Login to Azure
       uses: azure/login@v1
       with:
